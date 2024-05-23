@@ -9,6 +9,10 @@ public class Lista {
         serviEntrega = new ArrayList<Paqueteria>();
     }
 
+    public List<Paqueteria> getServiEntrega() {
+        return serviEntrega;
+    }
+
     public void adicionarElemento(Paqueteria p) throws Exception{
         if(serviEntrega.isEmpty())
             serviEntrega.add(p);
@@ -47,20 +51,22 @@ public class Lista {
         if(serviEntrega.size() == indice)
             return 0;
         else{
-            return serviEntrega.get(indice).getPeso() + totalPaquetes(indice + 1);
+            return serviEntrega.get(indice).getPeso() + totalPeso(indice + 1);
         }
 
     }
 
-    private double sumarTotalPesoCiudad(String ciudad){
-        //invocar al metodo recursivo
+    public double sumarTotalPesoCiudad(String ciudad){
+        return totalPesoCiudad(0,ciudad);
     }
 
-    public double totalPesoCiudad(int indice, String ciudad){
+    private double totalPesoCiudad(int indice, String ciudad){
         if(serviEntrega.size() == indice)
             return 0;
+        else if(serviEntrega.get(indice).getCiudadRecepcion().equals(ciudad))
+            return serviEntrega.get(indice).getPeso() + totalPesoCiudad(indice + 1,ciudad);
         else
-            return serviEntrega.get(indice).getPeso() + sumar
+            return totalPesoCiudad(indice + 1,ciudad);
     }
 
 
