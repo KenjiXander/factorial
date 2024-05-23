@@ -52,5 +52,16 @@ public class Lista {
 
     }
 
+    private double sumarTotalPesoCiudad(String ciudad){
+        //invocar al metodo recursivo
+    }
+
+    public double totalPesoCiudad(int indice, String ciudad){
+        if(serviEntrega.size() == indice)
+            return 0;
+        else
+            return serviEntrega.get(indice).getPeso() + sumar
+    }
+
 
 }

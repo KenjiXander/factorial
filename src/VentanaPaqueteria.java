@@ -12,6 +12,8 @@ public class VentanaPaqueteria {
     private JTextField textField2;
     private JButton agregarButton;
     private JButton totalButton;
+    private JComboBox comboBox1;
+    private JButton totalPesoPorCiudadButton;
     private JButton totalPesoButton;
     private Lista paquetes = new Lista();
 
