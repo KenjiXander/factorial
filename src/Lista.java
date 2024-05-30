@@ -78,14 +78,24 @@ public class Lista {
         return null;
     }
 
-    public Paqueteria buscarBinarioPorPeso(int tracking){
+    public int buscarBinarioPorTracking(int tracking){
         int inicio = 0;
         int fin = serviEntrega.size() - 1;
         int medio;
         int resultado = -1;
         while(inicio <= fin){
+            medio = (inicio + fin)/2;
+            if(serviEntrega.get(medio).getTracking() == tracking){
+                resultado =medio;
+                fin = inicio - 1;
 
+            } else if (serviEntrega.get(medio).getTracking() < tracking) {
+                inicio = medio + 1;
+            } else{
+                fin = medio - 1;
+            }
         }
+        return resultado;
     }
 
 }
