@@ -26,6 +26,10 @@ public class VentanaPaqueteria {
     private JTextArea textArea2;
     private JTextField textField3;
     private JButton ordenarPorInserciónPesoButton;
+    private JTextField textField4;
+    private JButton buscarPorTrackingButton;
+    private JButton buscarPorTranckingButton;
+    private JTextArea textArea3;
     private Lista paquetes = new Lista();
     private int selectedIndex = -1;
 
@@ -91,6 +95,7 @@ public class VentanaPaqueteria {
         modificarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 if (selectedIndex != -1) {
                     Paqueteria pa = paquetes.getServiEntrega().get(selectedIndex);
                     pa.setTracking(Integer.parseInt(spinner1.getValue().toString()));
@@ -132,6 +137,25 @@ public class VentanaPaqueteria {
             public void actionPerformed(ActionEvent e) {
                 ordenarBurbuja();
                 mostrarListas();
+            }
+        });
+
+
+        buscarPorTrackingButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int trackingNumber = Integer.parseInt(textField4.getText());
+                    int index = paquetes.buscarBinarioPorTracking(trackingNumber);
+                    if (index != -1) {
+                        Paqueteria pa = paquetes.getServiEntrega().get(index);
+                        textArea3.setText(pa.toString());
+                    } else {
+                        textArea3.setText("Paquete no encontrado.");
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Por favor ingrese un número de tracking válido.");
+                }
             }
         });
 
