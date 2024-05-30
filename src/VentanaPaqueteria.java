@@ -30,6 +30,9 @@ public class VentanaPaqueteria {
     private JButton buscarPorTrackingButton;
     private JButton buscarPorTranckingButton;
     private JTextArea textArea3;
+    private JTextField textField5;
+    private JComboBox comboBox4;
+    private JTextArea textArea4;
     private Lista paquetes = new Lista();
     private int selectedIndex = -1;
 
@@ -163,6 +166,17 @@ public class VentanaPaqueteria {
             }
         });
 
+        ordenarPorInserciónPesoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    List<Paqueteria> listaOrdenada = paquetes.ordenarInsercion();
+                    mostrarListaOrdenada(listaOrdenada);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            }
+        });
     }
 
     public void limpiarDatos(){
@@ -224,6 +238,14 @@ public class VentanaPaqueteria {
             sb.append("\n");
         }
         textArea1.setText(sb.toString());
+    }
+
+    public void mostrarListaOrdenada(List<Paqueteria> lista) {
+        StringBuilder sb = new StringBuilder();
+        for (Paqueteria pa : lista) {
+            sb.append(pa.toString()).append("\n");
+        }
+        textArea2.setText(sb.toString());
     }
 
 
