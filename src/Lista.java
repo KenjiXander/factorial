@@ -69,13 +69,23 @@ public class Lista {
             return totalPesoCiudad(indice + 1,ciudad);
     }
 
-    public Paqueteria buscarPorTracking(int tracking) {
+    public Paqueteria buscarLinealPorTracking(int tracking) {
         for (Paqueteria pa : serviEntrega) {
             if (pa.getTracking() == tracking) {
                 return pa;
             }
         }
         return null;
+    }
+
+    public Paqueteria buscarBinarioPorPeso(int tracking){
+        int inicio = 0;
+        int fin = serviEntrega.size() - 1;
+        int medio;
+        int resultado = -1;
+        while(inicio <= fin){
+
+        }
     }
 
 }

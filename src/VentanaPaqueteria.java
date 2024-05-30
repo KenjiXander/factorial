@@ -111,7 +111,7 @@ public class VentanaPaqueteria {
             public void actionPerformed(ActionEvent e) {
                 try {
                     int trackingNumber = Integer.parseInt(textField3.getText());
-                    Paqueteria pa = paquetes.buscarPorTracking(trackingNumber);
+                    Paqueteria pa = paquetes.buscarLinealPorTracking(trackingNumber);
                     if (pa == null) {
                         JOptionPane.showMessageDialog(null, "El número de tracking ingresado no existe, por favor ingrese un número válido.");
                     } else if ("Enviado".equals(pa.getEstado())) {
@@ -119,7 +119,7 @@ public class VentanaPaqueteria {
                     } else {
                         pa.setEstado("Enviado");
                         JOptionPane.showMessageDialog(null, "Estado del paquete actualizado a Enviado.");
-                        llenarJList(paquetes); // Actualizar la lista después de modificar
+                        llenarJList(paquetes);
                     }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Por favor ingrese un número de tracking válido.");
