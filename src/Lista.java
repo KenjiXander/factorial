@@ -69,5 +69,13 @@ public class Lista {
             return totalPesoCiudad(indice + 1,ciudad);
     }
 
+    public Paqueteria buscarPorTracking(int tracking) {
+        for (Paqueteria pa : serviEntrega) {
+            if (pa.getTracking() == tracking) {
+                return pa;
+            }
+        }
+        return null;
+    }
 
 }
