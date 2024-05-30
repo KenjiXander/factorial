@@ -120,7 +120,11 @@ public class VentanaPaqueteria {
                     if (pa == null) {
                         JOptionPane.showMessageDialog(null, "El número de tracking ingresado no existe, por favor ingrese un número válido.");
                     } else if ("Enviado".equals(pa.getEstado())) {
-                        JOptionPane.showMessageDialog(null, "Este paquete ya ha sido enviado.");
+                        pa.setEstado("Entregado");
+                        JOptionPane.showMessageDialog(null, "Estado del paquete actualizado a Entregado.");
+                        llenarJList(paquetes);
+                    } else if ("Entregado".equals(pa.getEstado())) {
+                        JOptionPane.showMessageDialog(null, "Este paquete ya ha sido entregado.");
                     } else {
                         pa.setEstado("Enviado");
                         JOptionPane.showMessageDialog(null, "Estado del paquete actualizado a Enviado.");
