@@ -33,6 +33,10 @@ public class VentanaPaqueteria {
     private JTextField textField5;
     private JComboBox comboBox4;
     private JTextArea textArea4;
+    private JButton buscarPaquetesButton;
+    private JComboBox comboBox5;
+    private JButton buscarPaquetesPorEstadoButton;
+    private JTextArea textArea5;
     private Lista paquetes = new Lista();
     private int selectedIndex = -1;
 
@@ -177,6 +181,28 @@ public class VentanaPaqueteria {
                 }
             }
         });
+        buscarPaquetesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buscarPaquetesCedulaEstado();
+            }
+        });
+        buscarPaquetesPorEstadoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String estadoSeleccionado = comboBox5.getSelectedItem().toString();
+                String resultados = "";
+
+                for (Paqueteria p : paquetes.getServiEntrega()) {
+                    if (p.getEstado().equals(estadoSeleccionado)) {
+                        resultados += p.toString() + "\n";
+                    }
+                }
+
+                textArea5.setText(resultados.toString());
+            }
+        });
+
     }
 
     public void limpiarDatos(){
@@ -232,24 +258,41 @@ public class VentanaPaqueteria {
     }
 
     public void mostrarListas() {
-        StringBuilder sb = new StringBuilder();
+        String resultados = "";
         for (Paqueteria pa : paquetes.getServiEntrega()) {
-            sb.append(pa.toString());
-            sb.append("\n");
+            resultados += pa.toString() + "\n";
         }
-        textArea1.setText(sb.toString());
+        textArea1.setText(resultados);
     }
 
     public void mostrarListaOrdenada(List<Paqueteria> lista) {
-        StringBuilder sb = new StringBuilder();
+        String resultados = "";
         for (Paqueteria pa : lista) {
-            sb.append(pa.toString()).append("\n");
+            resultados += pa.toString() + "\n";
         }
-        textArea2.setText(sb.toString());
+        textArea2.setText(resultados);
     }
 
 
-    public static void main(String[] args) {
+    private void buscarPaquetesCedulaEstado() {
+        String cedula = textField5.getText();
+        String estado = comboBox4.getSelectedItem().toString();
+        String resultados = "";
+
+        for (Paqueteria p : paquetes.getServiEntrega()) {
+            if (p.getCedulaReceptor().equals(cedula) && p.getEstado().equals(estado)) {
+                resultados += p.toString() + "\n";
+            }
+        }
+
+        textArea4.setText(resultados);
+    }
+
+
+
+
+
+        public static void main(String[] args) {
         JFrame frame = new JFrame("VentanaPaqueteria");
         frame.setContentPane(new VentanaPaqueteria().ventana);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
